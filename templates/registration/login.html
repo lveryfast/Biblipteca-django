@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}Entrar - Biblioteca{% endblock %}
+
+{% block content %}
+<h1>Iniciar Sesión</h1>
+{% if form.errors %}<p class="error">Datos incorrectos.</p>{% endif %}
+
+<form method="post">
+    {% csrf_token %}
+    <p>Usuario: <input type="text" name="username" required></p>
+    <p>Contraseña: <input type="password" name="password" required></p>
+    <button type="submit">Entrar</button>
+</form>
+{% endblock %}

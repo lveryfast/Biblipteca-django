@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ action }} Libro - Biblioteca{% endblock %}
+
+{% block content %}
+<h1>{{ action }} Libro</h1>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Guardar</button>
+    <a href="{% url 'catalog:book_list' %}">Cancelar</a>
+</form>
+
+{% if action == 'Crear' %}
+<p><a href="{% url 'catalog:author_create' %}" target="_blank">+ Crear nuevo autor</a></p>
+{% endif %}
+{% endblock %}

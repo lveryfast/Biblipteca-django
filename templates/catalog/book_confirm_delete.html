@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}Eliminar - Biblioteca{% endblock %}
+
+{% block content %}
+<h1>¿Eliminar "{{ book.title }}"?</h1>
+<p>Autor: {{ book.author.name }}</p>
+
+<form method="post">
+    {% csrf_token %}
+    <button type="submit">Sí, eliminar</button>
+    <a href="{% url 'catalog:book_detail' book.pk %}">Cancelar</a>
+</form>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %}Catálogo - Biblioteca{% endblock %}
+
+{% block content %}
+<h1>Catálogo de Libros</h1>
+
+<form method="get">
+    <input type="text" name="q" value="{{ query }}" placeholder="Buscar...">
+    <button type="submit">Buscar</button>
+    {% if query %}<a href="{% url 'catalog:book_list' %}">Limpiar</a>{% endif %}
+</form>
+
+<table>
+    <tr>
+        <th>Título</th>
+        <th>Autor</th>
+        <th>ISBN</th>
+        <th>Estado</th>
+        <th>Acciones</th>
+    </tr>
+    {% for book in books %}
+    <tr>
+        <td>{{ book.title }}</td>
+        <td>{{ book.author.name }}</td>
+        <td>{{ book.isbn }}</td>
+        <td>{% if book.is_available %}Disponible{% else %}Prestado{% endif %}</td>
+        <td>
+            <a href="{% url 'catalog:book_detail' book.pk %}">Ver</a>
+            {% if user.is_staff %}
+                | <a href="{% url 'catalog:book_update' book.pk %}">Editar</a>
+                | <a href="{% url 'catalog:book_delete' book.pk %}">Eliminar</a>
+            {% endif %}
+        </td>
+    </tr>
+    {% empty %}
+    <tr><td colspan="5">No hay libros.</td></tr>
+    {% endfor %}
+</table>
+{% endblock %}
