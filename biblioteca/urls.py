@@ -23,5 +23,5 @@ urlpatterns = [
     path('', include('catalog.urls')),
     path('loans/', include('loans.urls')),
     path('login/', auth_views.LoginView.as_view(), name='login'),
-    path('logout/', auth_views.LogoutView.as_view(), name='logout'),
+    path('logout/', auth_views.LogoutView.as_view(next_page='catalog:book_list'), name='logout'),
 ]

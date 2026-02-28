@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required, user_passes_test
+from django.contrib.auth import logout as auth_logout
 from django.contrib import messages
 from django.db.models import Q
 from .models import Book, Author
@@ -27,6 +28,10 @@ def book_list(request):
         'books': books,
         'query': query,
     })
+
+def logout_view(request):
+    auth_logout(request)
+    return redirect('catalog:book_list')
 
 
 def book_detail(request, pk):
