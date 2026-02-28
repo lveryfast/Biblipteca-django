@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}Devolver Libro - Biblioteca{% endblock %}
+
+{% block content %}
+<h1>Devolver Libro</h1>
+<p><b>Libro:</b> {{ loan.book.title }}</p>
+<p><b>Usuario:</b> {{ loan.user.username }}</p>
+<p><b>Fecha préstamo:</b> {{ loan.start_date|date:"d/m/Y" }}</p>
+<p><b>Vencimiento:</b> {{ loan.due_date|date:"d/m/Y" }}</p>
+<p><b>Hoy:</b> {% now "d/m/Y" %}</p>
+
+{% if loan.due_date < today %}
+    <p style="color: red;"><b>¡ATRASADO!</b> Se generará multa.</p>
+{% endif %}
+
+<form method="post">
+    {% csrf_token %}
+    <p>{{ form.confirm }} Confirmar devolución</p>
+    <button type="submit">Procesar Devolución</button>
+    <a href="{% url 'loans:loan_list' %}">Cancelar</a>
+</form>
+{% endblock %}

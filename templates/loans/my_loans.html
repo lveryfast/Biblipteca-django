@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block title %}Mis Préstamos - Biblioteca{% endblock %}
+
+{% block content %}
+<h1>Mis Préstamos</h1>
+
+<h2>Activos</h2>
+{% if active_loans %}
+<table>
+    <tr>
+        <th>Libro</th>
+        <th>Fecha préstamo</th>
+        <th>Vencimiento</th>
+        <th>Estado</th>
+    </tr>
+    {% for loan in active_loans %}
+    <tr>
+        <td>{{ loan.book.title }}</td>
+        <td>{{ loan.start_date|date:"d/m/Y" }}</td>
+        <td>{{ loan.due_date|date:"d/m/Y" }}</td>
+        <td>
+            {% if loan.is_overdue %}
+                <span style="color: red;">VENCIDO</span>
+            {% else %}
+                En plazo
+            {% endif %}
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% else %}
+<p>No tienes préstamos activos.</p>
+{% endif %}
+
+<h2>Historial</h2>
+{% if past_loans %}
+<table>
+    <tr>
+        <th>Libro</th>
+        <th>Prestado</th>
+        <th>Devuelto</th>
+    </tr>
+    {% for loan in past_loans %}
+    <tr>
+        <td>{{ loan.book.title }}</td>
+        <td>{{ loan.start_date|date:"d/m/Y" }}</td>
+        <td>{{ loan.end_date|date:"d/m/Y" }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% else %}
+<p>No hay historial.</p>
+{% endif %}
+{% endblock %}

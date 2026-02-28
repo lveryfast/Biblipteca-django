@@ -16,8 +16,9 @@
         <div class="nav">
             <a href="{% url 'catalog:book_list' %}">Inicio</a> |
             {% if user.is_authenticated %}
-                <a href="#">Mis Préstamos</a> |
+                <a href="{% url 'loans:my_loans' %}">Mis Préstamos</a> |
                 {% if user.is_staff %}
+                    <a href="{% url 'loans:loan_list' %}">Préstamos</a> |
                     <a href="{% url 'catalog:book_create' %}">Nuevo Libro</a> |
                     <a href="/admin/">Admin</a> |
                 {% endif %}

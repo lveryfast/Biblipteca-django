@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block title %}Préstamos - Biblioteca{% endblock %}
+
+{% block content %}
+<h1>Gestión de Préstamos</h1>
+<p><a href="{% url 'loans:loan_create' %}">+ Nuevo Préstamo</a></p>
+
+<table>
+    <tr>
+        <th>Libro</th>
+        <th>Usuario</th>
+        <th>Inicio</th>
+        <th>Vencimiento</th>
+        <th>Estado</th>
+        <th>Acción</th>
+    </tr>
+    {% for loan in loans %}
+    <tr>
+        <td>{{ loan.book.title }}</td>
+        <td>{{ loan.user.username }}</td>
+        <td>{{ loan.start_date|date:"d/m/Y" }}</td>
+        <td>{{ loan.due_date|date:"d/m/Y" }}</td>
+        <td>
+            {% if loan.is_active %}
+                {% if loan.is_overdue %}
+                    <span style="color: red;">Vencido</span>
+                {% else %}
+                    Activo
+                {% endif %}
+            {% else %}
+                Devuelto
+            {% endif %}
+        </td>
+        <td>
+            {% if loan.is_active %}
+                <a href="{% url 'loans:loan_return' loan.pk %}">Devolver</a>
+            {% else %}
+                -
+            {% endif %}
+        </td>
+    </tr>
+    {% empty %}
+    <tr><td colspan="6">No hay préstamos.</td></tr>
+    {% endfor %}
+</table>
+
+<p><a href="{% url 'loans:fine_list' %}">Ver Multas</a></p>
+{% endblock %}

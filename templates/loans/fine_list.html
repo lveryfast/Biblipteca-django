@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}Multas - Biblioteca{% endblock %}
+
+{% block content %}
+<h1>Multas por Retraso</h1>
+
+<table>
+    <tr>
+        <th>Préstamo</th>
+        <th>Usuario</th>
+        <th>Días retraso</th>
+        <th>Monto</th>
+    </tr>
+    {% for fine in fines %}
+    <tr>
+        <td>{{ fine.loan.book.title }}</td>
+        <td>{{ fine.loan.user.username }}</td>
+        <td>{{ fine.late_days }}</td>
+        <td>${{ fine.fine_amount }}</td>
+    </tr>
+    {% empty %}
+    <tr><td colspan="4">No hay multas registradas.</td></tr>
+    {% endfor %}
+</table>
+
+<p><a href="{% url 'loans:loan_list' %}">← Volver a préstamos</a></p>
+{% endblock %}
