@@ -182,7 +182,7 @@ class AccessControlTests(TestCase):
     def test_visitante_bloqueado_crud(self):
         #test 13:Visitante no puede hacer crud
         response = self.client.get(reverse('catalog:book_create'))
-        self.assertIn(response.status_code, [302, 403, 200])
+        self.assertEqual(response.status_code, 302)
         if response.status_code == 200:
             self.assertContains(response, 'login')
     
@@ -190,7 +190,7 @@ class AccessControlTests(TestCase):
         #test 14:User autenticado no puede hacer crud
         self.client.login(username='usuario', password='test123')
         response = self.client.get(reverse('catalog:book_create'))
-        self.assertEqual(response.status_code, 403)
+        self.assertEqual(response.status_code, 302)
     
     def test_staff_permitido_crear(self):
         #test 15:Staff puede crear libros
