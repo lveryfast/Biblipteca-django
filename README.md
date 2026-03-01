@@ -101,9 +101,10 @@ Staff	Todo lo anterior + CRUD libros, gestión de préstamos y multas
 
 #### 🛠 Staff
 <p align="center">
-    <img src="docs/images/staff_1.png" width="45%">
-    <img src="docs/images/staff_2.png" width="45%">
+    <img src="static/images/staff_1.png" width="45%">
+    <img src="static/images/staff_2.png" width="45%">
 </p>
+
 <p align="center">
     <img src="static/images/staff_3.png" width="45%">
     <img src="static/images/staff_4.png" width="45%">
@@ -124,16 +125,19 @@ Si hay retraso → se genera multa automática
 ### 🧪 Pruebas automatizadas
 
 Ejecutar:
-
+```bash
 python manage.py test
+```
 
 Resultado esperado:
 
 25 tests OK
 
 Modo detallado:
-
+```bash
 python manage.py test -v 2
+```
+
 ### 📁 Estructura del proyecto
     biblioteca/
     ├── biblioteca/              # Configuración Django
@@ -200,11 +204,6 @@ python manage.py test -v 2
 ### 📦 requirements.txt
 Django>=4.2,<5.0
 ✅ Verificación final
-
-Ejecutar:
-
-python manage.py test
-python manage.py runserver
 
 ## ✍ Autor
 
