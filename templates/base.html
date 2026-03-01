@@ -6,6 +6,16 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
+    <div class="banner">
+        <div class="banner-content">
+            <img src="{% static 'images/logo.png' %}" alt="Logo" class="banner-logo">
+            
+            <div class="banner-text">
+                <h1 class="banner-title">Biblioteca Smiling friends</h1>
+                <p class="banner-subtitle">Sistema de Gestión de Préstamos</p>
+            </div>
+        </div>
+    </div>
     <div class="nav">
         <a href="{% url 'catalog:book_list' %}">Inicio</a> |
         {% if user.is_authenticated %}

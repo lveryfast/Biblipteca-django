@@ -1,20 +1,53 @@
-body {
-    font-family: Arial, sans-serif;
-    margin: 20px;
-    background-color: #f0f0f0;
+.banner {
+    background-color: #fdb3f8;
+    color: #323a4e;
+    padding: 20px 20px;
+    margin-bottom: 0;
+}
+
+.banner-content {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    max-width: 20000px;
+    margin: 0;
+}
+
+.banner-logo {
+    height: 70px;
+    width: 70px;
+    object-fit: cover;
+}
+
+.banner-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+}
+
+.banner-title {
+    margin: 0;
+    font-size: 1.8em;
+    font-weight: bold;
+}
+
+.banner-subtitle {
+    margin: 0;
+    font-size: 1em;
+    opacity: 0.9;
 }
 
 .nav {
-    background-color: #333;
-    color: white;
+    background-color: #fdfd6f;
+    color: #323a4e;
     padding: 10px;
     margin-bottom: 20px;
 }
 
 .nav a {
-    color: white;
+    color: #323a4e;
     text-decoration: none;
-    margin-right: 15px;
+    margin-right: 20px;
 }
 
 .nav a:hover {
@@ -23,9 +56,9 @@ body {
 
 .container {
     background-color: white;
-    padding: 20px;
+    padding: 0px;
     border-radius: 5px;
-    max-width: 1000px;
+    max-width: 2000px;
 }
 
 table {
@@ -41,8 +74,8 @@ th, td {
 }
 
 th {
-    background-color: #001b86;
-    color: white;
+    background-color: #85fb85;
+    color: 	#323a4e;
 }
 
 tr:nth-child(even) {
